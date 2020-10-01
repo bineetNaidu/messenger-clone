@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, forwardRef } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -6,11 +6,11 @@ import Typography from '@material-ui/core/Typography';
 // Static
 import './Message.css';
 
-const Message = ({ message, username }) => {
+const Message = forwardRef(({ message, username }, ref) => {
   const isUser = username === message.username;
 
   return (
-    <div className={`message ${isUser && 'message__user'}`}>
+    <div className={`message ${isUser && 'message__user'}`} ref={ref}>
       <Card className={isUser ? 'message__userCard' : 'message__guestCard'}>
         <CardContent className="message__contents">
           <Typography
@@ -25,6 +25,6 @@ const Message = ({ message, username }) => {
       </Card>
     </div>
   );
-};
+});
 
 export default memo(Message);

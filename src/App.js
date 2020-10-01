@@ -6,6 +6,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Message from './Message';
 import { db, timestamp } from './firebase';
+import FlipMove from 'react-flip-move';
 
 // Statics
 import './App.css';
@@ -62,9 +63,11 @@ function App() {
       </form>
 
       {/* messages */}
-      {messages.map((msg) => (
-        <Message message={msg} username={username} key={msg.id} />
-      ))}
+      <FlipMove>
+        {messages.map((msg) => (
+          <Message message={msg} username={username} key={msg.id} />
+        ))}
+      </FlipMove>
     </div>
   );
 }
