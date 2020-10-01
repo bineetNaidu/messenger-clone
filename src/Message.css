@@ -2,6 +2,12 @@
   padding: 10px;
   margin: 10px;
   width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+.message > .MuiAvatar-root {
+  margin-right: 10px;
 }
 
 .message__user {

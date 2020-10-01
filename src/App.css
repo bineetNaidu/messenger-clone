@@ -1,0 +1,39 @@
+.app {
+  text-align: center;
+  margin: 1rem 0 0 0;
+}
+
+.app__tile {
+  margin-top: 1rem;
+  margin-bottom: 10px;
+}
+
+.app__form {
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #e9e9eb;
+  z-index: 1000;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.app__formControl {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.app__input {
+  flex: 1;
+}
+
+.app__btn {
+  flex: 0;
+}
+
+.app__messageBox {
+  overflow-y: scroll;
+  width: 100%;
+  height: 50vh;
+}
