@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import useFormState from './hooks/useFormState';
 import { db, timestamp } from './firebase';
 
-const Messager = ({ username }) => {
+const Messager = ({ user }) => {
   // States
   const [input, handleInput, resetInput] = useFormState('');
   const [messages, setMessages] = React.useState([]);
@@ -29,7 +29,8 @@ const Messager = ({ username }) => {
     e.preventDefault();
     db.collection('messages').add({
       text: input,
-      username,
+      username: user.username,
+      photo: user.photo,
       timestamp,
     });
     resetInput();
@@ -39,7 +40,7 @@ const Messager = ({ username }) => {
   return (
     <>
       <h2 className="app__tile">
-        Hey!! {username}{' '}
+        Hey!! {user?.username}{' '}
         <span role="img" aria-labelledby="Wave Emoji">
           👋
         </span>
@@ -70,7 +71,7 @@ const Messager = ({ username }) => {
       <div className="app__messageBox">
         <FlipMove>
           {messages.map((msg) => (
-            <Message message={msg} username={username} key={msg.id} />
+            <Message message={msg} username={user.username} key={msg.id} />
           ))}
         </FlipMove>
         <span ref={dummy}></span>

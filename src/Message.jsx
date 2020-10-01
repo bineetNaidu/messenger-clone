@@ -12,7 +12,7 @@ const Message = forwardRef(({ message, username }, ref) => {
 
   return (
     <div className={`message ${isUser && 'message__user'}`} ref={ref}>
-      {!isUser && <Avatar />}
+      {!isUser && <Avatar src={message.photo} />}
       <Card className={isUser ? 'message__userCard' : 'message__guestCard'}>
         <CardContent className="message__contents">
           <Typography

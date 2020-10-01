@@ -1,18 +1,13 @@
 import React from 'react';
+import Messager from './Messager';
+import Login from './Login';
 
 // Statics
 import './App.css';
-import Messager from './Messager';
 
 function App() {
   // State
-
-  const [username, setUsername] = React.useState('');
-
-  // Hooks && Context
-  React.useEffect(() => {
-    setUsername(prompt('Please Enter Your Name'));
-  }, []);
+  const [user, setUser] = React.useState(null);
 
   return (
     <div className="app">
@@ -20,9 +15,11 @@ function App() {
         src="https://facebookbrand.com/wp-content/uploads/2018/09/Header-e1538151782912.png?w=100&h=100"
         alt="Messenger logo"
       />
-      <h1 className="app__tile">Welcome to Message Clone</h1>
+      <h1 className="app__tile" style={{ color: '#2e81f4' }}>
+        Welcome to Messenger Clone
+      </h1>
 
-      <Messager username={username} />
+      {user ? <Messager user={user} /> : <Login setUser={setUser} />}
     </div>
   );
 }
