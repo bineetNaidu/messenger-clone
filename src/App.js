@@ -5,6 +5,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Message from './Message';
+import { db, timestamp } from './firebase';
 
 // Statics
 import './App.css';
@@ -20,10 +21,22 @@ function App() {
     setUsername(prompt('Please Enter Your Name'));
   }, []);
 
+  React.useEffect(() => {
+    db.collection('messages')
+      .orderBy('timestamp', 'asc')
+      .onSnapshot((snap) =>
+        setMessages(snap.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
+      );
+  }, []);
+
   // Functions
   const sendMessage = (e) => {
     e.preventDefault();
-    setMessages([...messages, { text: input, username }]);
+    db.collection('messages').add({
+      text: input,
+      username,
+      timestamp,
+    });
     resetInput();
   };
 
@@ -50,7 +63,7 @@ function App() {
 
       {/* messages */}
       {messages.map((msg) => (
-        <Message message={msg} username={username} />
+        <Message message={msg} username={username} key={msg.id} />
       ))}
     </div>
   );
