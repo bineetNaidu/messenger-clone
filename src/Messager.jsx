@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import useFormState from './hooks/useFormState';
 import { db, timestamp } from './firebase';
 
-const Messager = ({ user }) => {
+const Messager = ({ user, darkMode }) => {
   // States
   const [input, handleInput, resetInput] = useFormState('');
   const [messages, setMessages] = React.useState([]);
@@ -39,14 +39,20 @@ const Messager = ({ user }) => {
 
   return (
     <>
-      <h2 className="app__tile">
+      <h2
+        className="app__tile"
+        style={{ color: `${darkMode ? '#aab4da' : 'black'}` }}
+      >
         Hey!! {user?.username}{' '}
         <span role="img" aria-labelledby="Wave Emoji">
           👋
         </span>
       </h2>
 
-      <form className="app__form">
+      <form
+        className="app__form"
+        style={{ background: `${darkMode ? '#a8a8cc' : '#e9e9eb'}` }}
+      >
         <FormControl className="app__formControl">
           <Input
             className="app__input"
